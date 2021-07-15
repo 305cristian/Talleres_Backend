@@ -15,6 +15,17 @@ const usuarioSchema=new Schema({
         required:true,
         trim:true 
     },
+    user:{
+        type:String,
+        required:true,
+        trim:true,
+        unique:true
+    },
+    pass:{
+        type:String,
+        required:true,
+        trim:true 
+    },
     rol:{
         type:String,
         required:true,

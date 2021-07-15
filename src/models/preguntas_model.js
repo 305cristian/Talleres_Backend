@@ -1,30 +1,33 @@
-const {Schema,model}=require('mongoose');
+const {Schema, model} = require('mongoose');
 
-const preguntasSchema=new Schema({
-    
-    taller_id:{
-        type:Schema.Types.ObjectId,
-        required:true,
-        trim:true
+const preguntasSchema = new Schema({
+
+    taller_id: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        trim: true
     },
-    pregunta:{
+    pregunta: {
         type: String,
-        required:true,
-        trim:true
+        required: true,
+        trim: true
     },
-    respuesta:{
-        type:String,
-        required:true,
-        trim:true
+    puntaje: {
+        type: Number,
+        required: true,
+        trim: true
     },
-    estadoresp:{
-        type:Boolean,
-        required:true,
-        trim:true
+
+    estadopreg: {
+        type: Boolean,
+        required: true,
+        trim: true
     }
-    
-    
+
+
+
+
 });
 
-module.exports= model('preguntas',preguntasSchema);
+module.exports = model('preguntas', preguntasSchema);
 

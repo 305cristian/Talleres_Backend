@@ -16,11 +16,14 @@ app.use(express.json());
 app.use('/public_image',express.static(`${__dirname}/storage/img`));
 app.use('/public_image_area',express.static(`${__dirname}/storage/imgarea`)) ;
 app.use('/public_video',express.static(`${__dirname}/storage/video`));
+app.use('/public_image_user',express.static(`${__dirname}/storage/imguser`));
 
 app.use('/api/talleres', require('./routes/talleres'));
 app.use('/api/talleres_ar', require('./routes/talleres_area'));
 app.use('/api/areas', require('./routes/areas'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/preguntas',require('./routes/preguntas'));
+app.use('/api/respuestas',require('./routes/respuestas'));
+app.use('/api/evaluacion',require('./routes/evaluacion'));
 
 module.exports=app;

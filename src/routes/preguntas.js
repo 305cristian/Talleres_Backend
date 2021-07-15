@@ -1,16 +1,15 @@
 const {Router}=require('express');
 const router=Router();
 
-const {createPregunta} = require('../controllers/preguntas_controller');
+const {createPregunta, getPregunta, getPreguntas_taller, editPregunta, deletePregunta} = require('../controllers/preguntas_controller');
 
 
-router.route('/').post(function (req, resp) {
-    console.log('aqui')
-    console.log(req.body)
-}); 
-//router.route('/').get(getPreguntas);
+router.route('/').post(createPregunta); 
 
-//router.route('/:id').put(editPregunta);
-//router.route('/:id').delete(deletePregunta);
+
+router.route('/:id').get(getPreguntas_taller);
+router.route('/:id_taller/:id_preg').get(getPregunta);
+router.route('/:id').put(editPregunta);
+router.route('/:id').delete(deletePregunta);
 
 module.exports = router;

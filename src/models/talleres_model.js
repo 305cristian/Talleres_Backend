@@ -24,7 +24,17 @@ const tallerSchema =new Schema({
     video: {
         type:String,       
         trim:true
-    }
+    },
+    tiempo:{
+        type:Number,
+        required:true,
+        trim:true
+    },
+    intentos:{
+        type:Number,
+        required:true,
+        trim:true
+    },
 });
 
 tallerSchema.methods.setImgUrl=function setImgUrl (filename) {
