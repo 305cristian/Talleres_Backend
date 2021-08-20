@@ -7,7 +7,7 @@ const areasCtrl={};
 areasCtrl.getArea = async(req, resp)=>{
    const area= await Area.findById(req.params.id);
    resp.json(area);
-   resp.json('Area');
+   resp.json('Area')
    
 }
 //areasCtrl.getAreaId = async(req, resp)=>{
