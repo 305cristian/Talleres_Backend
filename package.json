@@ -2,8 +2,9 @@
     "name": "Tallerres_Backend",
     "version": "1.0.0",
     "scripts": {
-        "dev": "nodemon src/index.js",
-        "start": "node src/index.js"
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+        
     },
     "keywords": [
         "util",
