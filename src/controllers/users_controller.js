@@ -20,10 +20,10 @@ usersCtrl.createUser = async(req, resp) => {
 
     const usuarios = new Users({nombre: nombre, apellido: apellido, cedula: cedula, user: user, pass: md5(pass), rol: rol, image: image})
 
-    if (req.file) {
-        const{filename} = req.file;
-        usuarios.setImgUrl(filename);
-    }
+//    if (req.file) {
+//        const{filename} = req.file;
+//        usuarios.setImgUrl(filename);
+//    }
 
     await usuarios.save();
     resp.json('Usuario creado');
@@ -32,14 +32,14 @@ usersCtrl.updateUser = async(req, resp) => {
     console.log(req.body);
     console.log(req.file);
     var {nombre, apellido, cedula, user, pass, rol, image} = req.body;
-    if (req.file) {
-        const dir_img = await Users.findOne({_id: req.params.id}, {image: 1, _id: 0});
-        const{filename} = req.file;
-        image = filename;
-        if (dir_img !== '...') {
-            fs.unlink(path.resolve('src/storage/imguser/' + dir_img.image));
-        }
-    }
+//    if (req.file) {
+//        const dir_img = await Users.findOne({_id: req.params.id}, {image: 1, _id: 0});
+//        const{filename} = req.file;
+//        image = filename;
+//        if (dir_img !== '...') {
+//            fs.unlink(path.resolve('src/storage/imguser/' + dir_img.image));
+//        }
+//    }
     const newUsuarios = ({nombre: nombre, apellido: apellido, cedula: cedula, user: user, pass: md5(pass), rol: rol, image: image})
     await Users.findByIdAndUpdate(req.params.id, newUsuarios);
     resp.json('Actualizado');
@@ -47,11 +47,11 @@ usersCtrl.updateUser = async(req, resp) => {
 usersCtrl.deleteUser = async(req, resp) => {
 
     const dir_img = await Users.findOne({_id: req.params.id}, {image: 1, _id: 0});
-    if (dir_img !== '...') {
-        fs.unlink(path.resolve('src/storage/imguser/' + dir_img.image));
-    }
+//    if (dir_img !== '...') {
+//        fs.unlink(path.resolve('src/storage/imguser/' + dir_img.image));
+//    }
     await Users.findByIdAndRemove(req.params.id);
-    resp.json('Usuario Eliminado')
+    resp.json('Usuario Eliminado');
 }
 
 usersCtrl.login_session = async(req, resp) => {

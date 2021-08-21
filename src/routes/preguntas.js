@@ -10,6 +10,6 @@ router.route('/').post(createPregunta);
 router.route('/:id').get(getPreguntas_taller);
 router.route('/:id_taller/:id_preg').get(getPregunta);
 router.route('/:id').put(editPregunta);
-router.route('/:id').delete(deletePregunta);
+router.route('/:id/:id_taller').delete(deletePregunta);
 
 module.exports = router;
