@@ -1,7 +1,9 @@
 const Preguntas = require('../models/preguntas_model');
 const Taller = require('../models/talleres_model');
 const path = require('path');
+const mongoose = require('mongoose');
 
+const ObjectId = mongoose.Types.ObjectId;
 const preguntasCtrl = {};
 
 
@@ -14,9 +16,10 @@ preguntasCtrl.getPregunta = async (req, resp) => {
     resp.json('pregunta');
 };
 preguntasCtrl.getPreguntas_taller = async (req, resp) => {
-    const preguntas = await Preguntas.find({taller_id: req.params.id});
+    const preguntas = await Preguntas.find({taller_id: ObjectId(req.params.id)});
     resp.json(preguntas);
     resp.json('Preguntas');
+    console.log(preguntas);
 };
 
 
@@ -45,7 +48,7 @@ preguntasCtrl.deletePregunta = async(req, resp) => {
     await Preguntas.findByIdAndRemove(req.params.id);
 
 //ESTE APARTADO ES PARA ESPECIFICAR SI EL TALLER TIEN EVALUACION 0 NO
-    const preguntas = await Preguntas.findOne({taller_id: req.params.id});
+    const preguntas = await Preguntas.findOne({taller_id: req.params.id_taller});
     if (!preguntas) {
         const taller = ({evaluacion: '0'});//lE PONGO A EVALUACION EN ESTADO 0 PARA INDICARLE QUE EL TALLER NO TIEN REGISTRADO EVALUACION
         await Taller.findByIdAndUpdate(req.params.id_taller, taller);//aCTUALIZO EL TALLER LE PASO DE ESTADO 1 A ESTADO 0, EL CUAL INDICA QUE HAY EVALUACION 

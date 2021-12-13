@@ -26,5 +26,6 @@ app.use('/api/preguntas',require('./routes/preguntas'));
 app.use('/api/respuestas',require('./routes/respuestas'));
 app.use('/api/evaluacion',require('./routes/evaluacion'));
 app.use('/api/user_taller',require('./routes/user_taller'));
+app.use('/api/resultados',require('./routes/resultados'));
 
 module.exports=app;

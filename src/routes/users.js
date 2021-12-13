@@ -3,7 +3,7 @@ const router= Router();
 
 const upload =require('../libs/storage_file_user');
 
-const{getUser, getUsers, createUser, updateUser, deleteUser, login_session}=require('../controllers/users_controller');
+const{getUser,getUser_ci, getUsers, createUser, updateUser, deleteUser, login_session}=require('../controllers/users_controller');
 
 router.route('/')
         .get(getUsers)
@@ -14,6 +14,7 @@ router.route('/:id')
         .delete(deleteUser);
 
 router.route('/:user/:pass').get(login_session);
+router.route('/:ci/:id/:sn').get(getUser_ci);
         
 
 module.exports=router;

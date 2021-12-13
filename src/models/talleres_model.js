@@ -35,10 +35,21 @@ const tallerSchema =new Schema({
         required:true,
         trim:true
     },
+    aprobacion:{
+        type:Number,
+        required:true,
+        trim:true
+    },
+    estado:{
+        type:String,
+        required:true,
+        trim:true
+    },
     evaluacion:{
         type:String,
         trim:true
-    }
+    },
+    
 });
 
 tallerSchema.methods.setImgUrl=function setImgUrl (filename) {

@@ -9,6 +9,11 @@ usersCtrl.getUser = async(req, resp) => {
     resp.json(usuario);
     resp.json('Usuario');
 }
+usersCtrl.getUser_ci = async(req, resp) => {
+    const usuario_ci = await Users.findOne({cedula:req.params.ci});
+    resp.json(usuario_ci);
+    resp.json('Usuario');
+}
 usersCtrl.getUsers = async(req, resp) => {
     const usuarios = await Users.find();
     resp.json(usuarios);

@@ -49,7 +49,7 @@ talleresCtrl.getTalleres_area = async(req, resp) => {
 
 
 talleresCtrl.editTaller = async (req, resp) => {
-    var {title, description,tiempo,intentos, evaluacion,area_id, image, video} = req.body;
+    var {title, description,tiempo,intentos,aprobacion,estado, evaluacion,area_id, image, video} = req.body;
     console.log(req.body);
     console.log(req.files);
 //    var img_url = dir_image.name;
@@ -77,7 +77,7 @@ talleresCtrl.editTaller = async (req, resp) => {
 //
 //
 //    }
-    const  newTaller = ({title: title, description: description,tiempo:tiempo,intentos:intentos,evaluacion:evaluacion, area_id: area_id, image: image, video: video});
+    const  newTaller = ({title: title, description: description,tiempo:tiempo,intentos:intentos,aprobacion:aprobacion,estado:estado,evaluacion:evaluacion, area_id: area_id, image: image, video: video});
     await  Taller.findByIdAndUpdate(req.params.id, newTaller);
     resp.json('Taller actualizado');
 };
@@ -101,9 +101,10 @@ talleresCtrl.deleteTaller = async (req, resp) => {
 
 talleresCtrl.createTaller = async (req, resp) => {
 
-    const{title, description,tiempo,intentos,evaluacion, area_id,image, video} = req.body;
+    const{title, description,tiempo,intentos,aprobacion,estado,evaluacion, area_id,image, video} = req.body;
     console.log(req.body);
-    const taller = new Taller({title: title, description: description,tiempo:tiempo,intentos:intentos,evaluacion:evaluacion, area_id: area_id,image:image, video: video});
+//    const taller = new Taller({title: title, description: description,tiempo:tiempo,intentos:intentos,evaluacion:evaluacion, area_id: area_id,image:image, video: video});
+    const taller = new Taller({title: title, description: description,tiempo:tiempo,intentos:intentos,aprobacion:aprobacion,estado:estado,evaluacion:evaluacion, area_id: area_id,image:image, video: video});
 //    if (req.files) {
 //        const{filename} = req.files['image'][0];
 //        taller.setImgUrl(filename);

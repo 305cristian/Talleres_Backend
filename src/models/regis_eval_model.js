@@ -20,6 +20,21 @@ const regis_evalSchema = new Schema({
         type: Date,
         required: true,
         trim: true
+    },
+    intentos: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    ci_user: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    puntuacion: {
+        type: Number,
+        required: true,
+        trim: true
     }
 })
 
