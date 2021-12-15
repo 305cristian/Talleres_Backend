@@ -59,7 +59,7 @@ respuestasCtrl.getRespuestas = async (req, resp) => {
         {$unwind: "$respuestas"},
 //        {$match: {taller_id: ObjectId(req.params.id_taller)}}
     ]);
-    resp.json(preg_resp);
+    resp.json(preg_resp); 
 }
 respuestasCtrl.getPreguntasRespuestas = async (req, resp) => {//Este metodo se lo utiliza en el componente evaluacion para pintar el QUIZ
     //Respuestas es la coleccion padre
@@ -94,6 +94,13 @@ respuestasCtrl.getPreguntasRespuestas = async (req, resp) => {//Este metodo se l
 
     ]);
     resp.json(preg_resp);
+}
+
+respuestasCtrl.getRespuestasxpregunta = async(req,resp)=>{
+//    console.log(req.params.id_preg); 
+    const resultado= await Respuestas.find({pregunta_resp:ObjectId(req.params.id_preg)}) ;
+    resp.json(resultado) ;
+//    console.log(resultado);
 }
 
 module.exports = respuestasCtrl;

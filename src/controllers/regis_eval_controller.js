@@ -1,10 +1,13 @@
-
 const Regis_eval = require('../models/regis_eval_model');
+const mongoose = require('mongoose');
 
 const regis_evalCtrl = {};
 
 var date = new Date();
 var dateActual = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+
+const ObjectId = mongoose.Types.ObjectId;
+const respuestasCtrl = {};
 
 regis_evalCtrl.registrarEvaluacion = async(req, resp) => {
 //    console.log(req.body);
@@ -29,7 +32,7 @@ regis_evalCtrl.registrarEvaluacion = async(req, resp) => {
 
 regis_evalCtrl.getUserTaller = async(req, resp) => {
 //    console.log(req.params.id)
-    console.log(req.body)
+//    console.log(req.body)
     const user_talleres = await Regis_eval.find({id_user: req.params.id});
     resp.json(user_talleres);
 
@@ -63,17 +66,25 @@ regis_evalCtrl.getUserTaller_ci = async(req, resp) => {
 
 regis_evalCtrl.getUserTalleres = async(req, resp) => {
 //    console.log(req.params.id)
-    console.log(req.body)
+//    console.log(req.body)
     const user_talleres = await Regis_eval.find({estado: 1});
     resp.json(user_talleres);
 
 }
 
 regis_evalCtrl.reset_Intentos = async(req, resp) => {
-    console.log(req.params.id);
+//    console.log(req.params.id);
     const data_reset=({intentos:0});
     const reset_intentos=await Regis_eval.findByIdAndUpdate(req.params.id, data_reset);
     resp.json(reset_intentos);
+}
+
+regis_evalCtrl.getNotas =async (req,resp)=>{
+//    console.log('....'+req.params.id_user);
+    console.log('.....'+req.params.id_taller);
+    const resultados=await Regis_eval.findOne({id_user:ObjectId(req.params.id_user),id_taller:ObjectId(req.params.id_taller)},{puntuacion:1, _id:0 });
+    resp.json(resultados);
+//    console.log('.....',resultados);
 }
 
 

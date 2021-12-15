@@ -27,5 +27,7 @@ app.use('/api/respuestas',require('./routes/respuestas'));
 app.use('/api/evaluacion',require('./routes/evaluacion'));
 app.use('/api/user_taller',require('./routes/user_taller'));
 app.use('/api/resultados',require('./routes/resultados'));
+app.use('/api/visitaslike',require('./routes/visitas_like'));
+app.use('/api/visitastaller',require('./routes/visitas_taller'));
 
 module.exports=app;

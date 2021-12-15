@@ -1,4 +1,5 @@
 const Resultados = require('../models/regis_result_model');
+const Preguntas = require('../models/preguntas_model');
 const mongoose = require('mongoose');
 
 const resultadosCtrl = [];
@@ -27,7 +28,7 @@ resultadosCtrl.save_resultados = async(req, resp) => {
             id_preg: data,
             resp: respuestas_eval[index],
             estado_resp: estado_resp_eval[index]
-            
+
         });
         await data_result.save();
 
@@ -39,41 +40,78 @@ resultadosCtrl.save_resultados = async(req, resp) => {
     console.log('hola insecto');
 };
 
-resultadosCtrl.get_resultados =async(req, resp)=>{
+resultadosCtrl.get_resultados = async(req, resp) => {
     console.log(req.params.id_user);
     console.log(req.params.id_taller);
-    
+
 //    const resultado_eval= await Resultados.find({id_user:req.params.id_user, id_taller:req.params.id_taller});
-    const resultado_eval= await Resultados.aggregate([
+    const resultado_eval = await Resultados.aggregate([
         {
-            $match:{
-              id_user: ObjectId(req.params.id_user) ,
-              id_taller: ObjectId(req.params.id_taller)
+            $match: {
+                id_user: ObjectId(req.params.id_user),
+                id_taller: ObjectId(req.params.id_taller)
             }
         },
         {
-            $lookup:{
-                from:'preguntas',
-                localField:'id_preg',
+            $lookup: {
+                from: 'preguntas',
+                localField: 'id_preg',
                 foreignField: '_id',
                 as: 'preg_taller'
             }
         },
         {
-            $unwind:'$preg_taller'
+            $unwind: '$preg_taller'
         }
     ]);
-    
+
     resp.json(resultado_eval);
 //    console.log(resultado_eval);
     resp.json('Resultados');
 };
 
-resultadosCtrl.get_resultados_taller=async(req, resp)=>{
-    
-    const resultado_taller= await Resultados.find({id_taller: ObjectId(req.params.id_taller)});
+resultadosCtrl.get_resultados_taller = async(req, resp) => {
+
+    const resultado_taller = await Resultados.find({id_taller: ObjectId(req.params.id_taller)});
     resp.json(resultado_taller);
 //    console.log(resultado_taller);
 };
+
+resultadosCtrl.get_all = async (req, resp) => {
+
+    const resultado = await Resultados.aggregate([     
+        {
+            $match: {
+                        estado_resp: '0'
+                    }
+        },  
+        {
+            $group: {
+                     _id: null, //_id es un identificador unico, voy agrupar mediante id_preg de la coleccion
+                     pregId: {
+                        $addToSet: '$id_preg',
+                     },
+                     cont:{$sum:1},// sumo el numero de items que se agruparon
+                     suma:{$sum:'$estado_resp'},// sumo el todal  de estado_resp de los items agrupados
+                    }
+                  
+        },
+        {
+            $lookup: {
+                from: 'preguntas', //Coleccion hijo (area)
+                localField: 'pregId', //la foranea de talleres
+                foreignField: '_id', //el id de area
+                as: 'preguntas_get' //un alias
+            }
+
+        },       
+        {
+            $unwind: '$preguntas_get'
+        }
+        
+    ]);
+        
+    resp.json(resultado);
+}
 
 module.exports = resultadosCtrl;

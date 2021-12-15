@@ -3,7 +3,7 @@ const router = Router();
 
 
 const upload =require('../libs/storage_file');
-const {getTalleres,  getTaller, editTaller, deleteTaller, createTaller, getTalleres_area} = require('../controllers/talleres_controller');
+const {getTalleres,  getTaller, editTaller, deleteTaller, createTaller, getTalleres_area, getTaller_x_area} = require('../controllers/talleres_controller');
 
 let cpUpload = upload.fields([{name: 'video'}, { name: 'image'}])
     
@@ -17,6 +17,8 @@ router.route('/:id')
         .put(cpUpload,editTaller)
 //        .put(upload.single('image'),editTaller)
         .get(getTaller);
+
+router.route('/:id_area/:id').get(getTaller_x_area)
 
 
 

@@ -3,9 +3,15 @@ var fs = require('fs-extra');
 const path = require('path');
 
 
+const mongoose = require('mongoose');
+
+const ObjectId = mongoose.Types.ObjectId;
+const respuestasCtrl = {};
+
 const talleresCtrl = {};
 
 talleresCtrl.getTaller = async (req, resp) => {
+    console.log('dffff'+req.params.id)
     const taller = await Taller.findById(req.params.id);
     resp.json(taller);
     resp.json('Tarea');
@@ -111,6 +117,16 @@ talleresCtrl.createTaller = async (req, resp) => {
 //    }
     await taller.save();
     resp.json('Taller Creado');
+};
+
+talleresCtrl.getTaller_x_area = async(req, resp) => {
+    const talleres = await Taller.find({area_id: ObjectId(req.params.id_area)});
+    if(talleres.length > 0 ){
+        resp.json('existe');  
+    }else{
+       resp.json('no_existe') ;   
+    }
+//    console.log(talleres);
 };
 
 module.exports = talleresCtrl;

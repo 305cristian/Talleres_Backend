@@ -26,8 +26,8 @@ preguntasCtrl.getPreguntas_taller = async (req, resp) => {
 
 preguntasCtrl.createPregunta = async (req, resp) => {
     console.log(req.body);
-    const{taller_id, pregunta, respuesta, puntaje, estadopreg} = req.body;
-    const preguntas = new Preguntas({taller_id: taller_id, pregunta: pregunta, puntaje: puntaje, estadopreg: estadopreg});
+    const{taller_id, pregunta, respuesta, puntaje, estadopreg, tipo_preg} = req.body;
+    const preguntas = new Preguntas({taller_id: taller_id, pregunta: pregunta, puntaje: puntaje, estadopreg: estadopreg, tipo_preg:tipo_preg});
     await preguntas.save();
     const taller = ({evaluacion: '1'});//lE PONGO A EVALUACION EN ESTADO 1 PARA INDICARLE QUE EL TALLER TIEN REGISTRADO EVALUACION
     await Taller.findByIdAndUpdate(req.body.taller_id, taller);//aCTUALIZO EL TALLER LE PASO DE ESTADO 0 A ESTADO 1, EL CUAL INDICA QUE HAY EVALUACION
@@ -37,8 +37,8 @@ preguntasCtrl.createPregunta = async (req, resp) => {
 preguntasCtrl.editPregunta = async(req, resp) => {
 //    console.log(req.body);
 //    console.log(req.params.id);
-    const{taller_id, pregunta, puntaje, estadopreg} = req.body;
-    const  newpreg = ({taller_id: taller_id, pregunta: pregunta, puntaje: puntaje, estadopreg: estadopreg});
+    const{taller_id, pregunta, puntaje, estadopreg, tipo_preg} = req.body;
+    const  newpreg = ({taller_id: taller_id, pregunta: pregunta, puntaje: puntaje, estadopreg: estadopreg, tipo_preg:tipo_preg});
     await  Preguntas.findByIdAndUpdate(req.params.id, newpreg);
     resp.json('actualizado exitosamente')
 

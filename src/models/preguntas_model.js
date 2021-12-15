@@ -22,6 +22,11 @@ const preguntasSchema = new Schema({
         type: Boolean,
         required: true,
         trim: true
+    },
+    tipo_preg: {
+        type: String,
+        required: true,
+        trim: true
     }
 
 
