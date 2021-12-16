@@ -6,7 +6,7 @@ mongoose.connect(URI,{
     useCreateIndex:true
 });
 
-const connection=mongoose.connection;
+const connection=mongoose.connection ;
 
 connection.once('open', () =>{
     console.log('Database in connect')
