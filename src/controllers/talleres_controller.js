@@ -11,21 +11,21 @@ const respuestasCtrl = {};
 const talleresCtrl = {};
 
 talleresCtrl.getTaller = async (req, resp) => {
-    console.log('dffff'+req.params.id)
+//    console.log('dffff'+req.params.id)
     const taller = await Taller.findById(req.params.id);
     resp.json(taller);
-    resp.json('Tarea');
+//    resp.json('Tarea');
 };
 
 talleresCtrl.getTalleres = async(req, resp) => {
     const talleres = await Taller.find();
     resp.json(talleres);
-    resp.json('Tareas');
+//    resp.json('Tareas');
 };
 
 talleresCtrl.getTalleresArea = async(req, resp) => {
     //La coleccion padre es Tallers
-    console.log('si llego')
+//    console.log('si llego')
     const talleres = await Taller.aggregate([
         {
             $lookup: {
@@ -42,22 +42,22 @@ talleresCtrl.getTalleresArea = async(req, resp) => {
     ]).sort({talleresArea:1});
     
     resp.json(talleres);
-    resp.json('Talleres con area');
+//    resp.json('Talleres con area');
 }
 
 talleresCtrl.getTalleres_area = async(req, resp) => {
-    console.log('Entro');
-    console.log(req.params.id);
+//    console.log('Entro');
+//    console.log(req.params.id);
     const talleres = await Taller.find({area_id: req.params.id});
     resp.json(talleres);
-    resp.json('Tareas por areas');
+//    resp.json('Tareas por areas');
 };
 
 
 talleresCtrl.editTaller = async (req, resp) => {
     var {title, description,tiempo,intentos,aprobacion,estado, evaluacion,area_id, image, video} = req.body;
-    console.log(req.body);
-    console.log(req.files);
+//    console.log(req.body);
+//    console.log(req.files);
 //    var img_url = dir_image.name;
 //    console.log(dir_image.name)
 //    if (req.files) {
@@ -108,7 +108,7 @@ talleresCtrl.deleteTaller = async (req, resp) => {
 talleresCtrl.createTaller = async (req, resp) => {
 
     const{title, description,tiempo,intentos,aprobacion,estado,evaluacion, area_id,image, video} = req.body;
-    console.log(req.body);
+//    console.log(req.body);
 //    const taller = new Taller({title: title, description: description,tiempo:tiempo,intentos:intentos,evaluacion:evaluacion, area_id: area_id,image:image, video: video});
     const taller = new Taller({title: title, description: description,tiempo:tiempo,intentos:intentos,aprobacion:aprobacion,estado:estado,evaluacion:evaluacion, area_id: area_id,image:image, video: video});
 //    if (req.files) {

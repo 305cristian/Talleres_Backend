@@ -8,7 +8,7 @@ const ObjectId = mongoose.Types.ObjectId;
 const respuestasCtrl = {};
 
 respuestasCtrl.createRespuesta = async(req, resp) => {
-    console.log(req.body);
+//    console.log(req.body);
     const {pregunta_resp, resp_taller_id, respuesta, estadoresp} = req.body;
     const pregunta = new Respuestas({pregunta_resp: pregunta_resp, resp_taller_id: resp_taller_id, respuesta: respuesta, estadoresp: estadoresp});
     await pregunta.save();
@@ -37,8 +37,8 @@ respuestasCtrl.getRespuesta = async(req, resp) => {
 
 respuestasCtrl.getRespuestas = async (req, resp) => {
     //Respuestas es la coleccion padre
-    console.log(req.params.id_taller);
-    console.log(req.params.id_preg);
+//    console.log(req.params.id_taller);
+//    console.log(req.params.id_preg);
     const preg_resp = await Preguntas.aggregate([
         {
             $match: {
@@ -63,8 +63,8 @@ respuestasCtrl.getRespuestas = async (req, resp) => {
 }
 respuestasCtrl.getPreguntasRespuestas = async (req, resp) => {//Este metodo se lo utiliza en el componente evaluacion para pintar el QUIZ
     //Respuestas es la coleccion padre
-    console.log('preguntasrespuestas')
-    console.log(req.params.id_taller);
+//    console.log('preguntasrespuestas')
+//    console.log(req.params.id_taller);
 
     const preg_resp = await Preguntas.aggregate([//Simulo un join para unir las preguntas a sus respectivas respuestas
 

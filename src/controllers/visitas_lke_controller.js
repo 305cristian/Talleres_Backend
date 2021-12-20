@@ -10,7 +10,7 @@ ctrlVisitasLike.save_visitas = async (req, resp)=>{
     if(existe){
         
          var acmd=existe.visitas +1;
-         await Visitas_like.update({id_area:id_area},{visitas:acmd});
+         await Visitas_like.updateOne({id_area:id_area},{visitas:acmd});
     }else{
     
         const visitas_lik=new Visitas_like({id_area:id_area,visitas:1});

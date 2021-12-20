@@ -10,7 +10,7 @@ ctrlVisitasTaller.save_visitas = async (req, resp)=>{
     if(existe){
         
          var acmd=existe.visitas +1;
-         await Visitas_taller.update({id_taller:id_taller},{visitas:acmd});
+         await Visitas_taller.updateOne({id_taller:id_taller},{visitas:acmd});
     }else{
     
         const visitas_taller=new Visitas_taller({id_taller:id_taller,visitas:1});

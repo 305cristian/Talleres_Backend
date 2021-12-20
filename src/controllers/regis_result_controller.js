@@ -18,9 +18,9 @@ resultadosCtrl.save_resultados = async(req, resp) => {
     }
 
     preguntas_eval.map(async(data, index) => {
-        console.log('pregunta', data);
-        console.log('respuesta', respuestas_eval[index]);
-        console.log('estado_resp', estado_resp_eval[index]);
+//        console.log('pregunta', data);
+//        console.log('respuesta', respuestas_eval[index]);
+//        console.log('estado_resp', estado_resp_eval[index]);
         const data_result = new Resultados({
             id_user: id_user,
             ci_user: ci_user,
@@ -37,12 +37,12 @@ resultadosCtrl.save_resultados = async(req, resp) => {
 
 
 
-    console.log('hola insecto');
+//    console.log('hola insecto');
 };
 
 resultadosCtrl.get_resultados = async(req, resp) => {
-    console.log(req.params.id_user);
-    console.log(req.params.id_taller);
+//    console.log(req.params.id_user);
+//    console.log(req.params.id_taller);
 
 //    const resultado_eval= await Resultados.find({id_user:req.params.id_user, id_taller:req.params.id_taller});
     const resultado_eval = await Resultados.aggregate([
@@ -67,7 +67,7 @@ resultadosCtrl.get_resultados = async(req, resp) => {
 
     resp.json(resultado_eval);
 //    console.log(resultado_eval);
-    resp.json('Resultados');
+//    resp.json('Resultados');
 };
 
 resultadosCtrl.get_resultados_taller = async(req, resp) => {

@@ -19,7 +19,6 @@ areasCtrl.getArea = async(req, resp)=>{
 areasCtrl.getAreas = async(req, resp)=>{
    const areas= await Area.find();
    resp.json(areas);
-   resp.json('Lista de Areas')
 }
 areasCtrl.createArea = async(req, resp)=>{
     const {title, description,image}=req.body;
@@ -31,12 +30,11 @@ areasCtrl.createArea = async(req, resp)=>{
 //        area.setImgUrl(filename);
 //    }
     await area.save();
-    resp.json('Area creada');
 }
 areasCtrl.editArea =async(req, resp)=>{
     var {title,description,image}=req.body;
-    console.log(req.body);
-    console.log(req.file); 
+//    console.log(req.body);
+//    console.log(req.file); 
 //    if(req.file){
 //        const dir_img=await Area.findOne({'_id':req.params.id},{'image':1,'_id':0});
 //        const {filename}=req.file;
